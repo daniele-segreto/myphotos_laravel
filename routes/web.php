@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\MyFirstController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -90,3 +92,24 @@ Route::get('/hello-view/{param}', function ($param) {
 
     return view('hello-view', $model); // restituisce una vista (e passiamo il $model alla vista)
 });
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------
+#5 ROTTE PER COLLEGARE/GESTIRE UN CONTROLLER RIFERENDOSI AL METODO
+
+// Rotta che risponde al path /hello-controller e invece di utilizzare una funzione dice a Laravel che per essere gestito deve collegarsi al Controller (MyFirstController) e al Metodo (index)
+Route::get('/hello-controller-1', 'MyFirstController@index'); // non funziona più (vecchia sintassi)
+Route::get('/hello-controller-2', 'App\Http\Controllers\MyFirstController@index'); // così funziona
+
+Route::get('/hello-controller', [MyFirstController::class, 'index']); // nuova sintassi per riferirsi al Controller e al metodo
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------
+#6 PASSARE DEI PARAMETRI ALLE ROTTE TRAMITE IL PATH +
+#7 RESTITUIRE TUTTO TRAMITE UNA VISTA/VIEW
+Route::get('/hello-controller/{param1}/{param2}', [MyFirstController::class, 'index']);
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------
+#?
+Route::get('/hello-controller-query-string', [MyFirstController::class, 'indexWithQueryString']);

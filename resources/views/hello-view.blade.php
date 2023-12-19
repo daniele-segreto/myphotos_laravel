@@ -1,5 +1,5 @@
 {{-- Vista restituita --}}
-<h1>Hello!!!!!!!!!!</h1>
+<h1>Hello!!!!!!!!!! ---</h1>
 
 {{-- Parametri restituiti, tramite la chiave accediamo al valore --}}
 <div>
