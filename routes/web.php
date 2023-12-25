@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\MyFirstController;
 use Illuminate\Support\Facades\Route;
 
@@ -98,8 +99,8 @@ Route::get('/hello-view/{param}', function ($param) {
 #5 ROTTE PER COLLEGARE/GESTIRE UN CONTROLLER RIFERENDOSI AL METODO
 
 // Rotta che risponde al path /hello-controller e invece di utilizzare una funzione dice a Laravel che per essere gestito deve collegarsi al Controller (MyFirstController) e al Metodo (index)
-Route::get('/hello-controller-1', 'MyFirstController@index'); // non funziona più (vecchia sintassi)
-Route::get('/hello-controller-2', 'App\Http\Controllers\MyFirstController@index'); // così funziona
+// Route::get('/hello-controller-1', 'MyFirstController@index'); // non funziona più (vecchia sintassi)
+// Route::get('/hello-controller-2', 'App\Http\Controllers\MyFirstController@index'); // così funziona
 
 Route::get('/hello-controller', [MyFirstController::class, 'index']); // nuova sintassi per riferirsi al Controller e al metodo
 
@@ -111,5 +112,22 @@ Route::get('/hello-controller/{param1}/{param2}', [MyFirstController::class, 'in
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------
-#?
+#8 query-string
 Route::get('/hello-controller-query-string', [MyFirstController::class, 'indexWithQueryString']);
+// Se inseriamo come path: http://127.0.0.1:8000/hello-controller-query-string?p1=daniele&p2=segreto
+// riceveremo: string(7) "daniele" string(7) "segreto"
+
+# ---------------------------------------------------------------------------------------------------------------------------------
+
+#metodo 1 (old, non funziona più)
+// Route::get('photos', 'Admin\PhotoController@index');
+// Route::post('photos', 'Admin\PhotoController@store');
+
+#metodo 2 (new, questo funziona)
+Route::get('photos', [PhotoController::class, 'index']);
+Route::post('photos', [PhotoController::class, 'store']);
+// e così per tutti gli altri che dobbiamo implementare/gestire
+
+# altro modo per creare queste rotte
+// Route::resource('photos', 'Admin\PhotoController'); // non funziona (old)
+Route::resource('photos', PhotoController::class); // funziona (new)
