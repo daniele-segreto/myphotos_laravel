@@ -1,29 +1,37 @@
-@if (count($photos) == 0)
+@extends('layouts.layout-bootstrap')
 
-    <h1 class="text-center">You have 0 photos</h1>
-@else
-    <table class="table table-striped">
+@section('content')
 
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Url</th>
-                <th>Preview</th>
-            </tr>
-        </thead>
+    @if (count($photos) == 0)
+        <h1 class="text-center">You have 0 photos</h1>
+    @else
+        <table class="table table-striped">
 
-        <tbody>
-            @foreach ($photos as $photo)
+            <thead>
                 <tr>
-                    <td>{{ $photo->id }}</td>
-                    <td>{{ $photo->title }}</td>
-                    <td>{{ $photo->url }}</td>
-                    <td><img class="photo-preview" src="{{ $photo->url }}"></td>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Url</th>
+                    <th>Preview</th>
                 </tr>
-            @endforeach
-        </tbody>
+            </thead>
 
-    </table>
+            <tbody>
+                @foreach ($photos as $photo)
+                    <tr>
+                        <td>{{ $photo->id }}</td>
+                        <td>{{ $photo->title }}</td>
+                        <td>{{ $photo->url }}</td>
+                        {{-- Al momento ho modificato le dimensioni delle foto con l'approccio inline (a differenza del tutorial --}}
+                        <td><img class="photo-preview" src="{{ $photo->url }}" style="width:100px; height:100px;"></td>
+                    </tr>
+                @endforeach
+            </tbody>
 
-@endif
+        </table>
+    @endif
+@endsection
+
+{{-- @section('second-area')
+    my second area
+@endsection --}}
