@@ -41,9 +41,14 @@ class PhotoController extends Controller
     /**
      * Display the specified resource.
      */
+    // ===> /show/10
     public function show(Photo $photo)
     {
-        //
+        $data = [
+            "photo" => $photo
+        ];
+
+        return view('photos.show', $data);
     }
 
     /**

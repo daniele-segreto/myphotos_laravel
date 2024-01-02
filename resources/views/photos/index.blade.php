@@ -1,7 +1,6 @@
 @extends('layouts.layout-bootstrap')
 
 @section('content')
-
     @if (count($photos) == 0)
         <h1 class="text-center">You have 0 photos</h1>
     @else
@@ -13,6 +12,7 @@
                     <th>Title</th>
                     <th>Url</th>
                     <th>Preview</th>
+                    <th>*</th>
                 </tr>
             </thead>
 
@@ -24,6 +24,9 @@
                         <td>{{ $photo->url }}</td>
                         {{-- Al momento ho modificato le dimensioni delle foto con l'approccio inline (a differenza del tutorial --}}
                         <td><img class="photo-preview" src="{{ $photo->url }}" style="width:100px; height:100px;"></td>
+                        <td>
+                            <a class="btn btn-info" href="{{ route('photos.show', ['photo' => $photo->id]) }}">DETAILS</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -33,5 +36,5 @@
 @endsection
 
 {{-- @section('second-area')
-    my second area
+my second area
 @endsection --}}
