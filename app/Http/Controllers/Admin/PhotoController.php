@@ -27,7 +27,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+        return view('photos.create');
     }
 
     /**
@@ -35,7 +35,19 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:100',
+            'url' => 'required|max:100'
+        ]);
+
+        $photo = new Photo();
+
+        $photo->title = $request->input('title');
+        $photo->url = $request->input('url');
+
+        $photo->save();
+
+        return redirect()->route('photos.index')->with('success', 'Photo added successfully');
     }
 
     /**

@@ -1,6 +1,13 @@
 @extends('layouts.layout-bootstrap')
 
 @section('content')
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     @if (count($photos) == 0)
         <h1 class="text-center">You have 0 photos</h1>
     @else
