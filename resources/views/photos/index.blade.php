@@ -20,6 +20,7 @@
                     <th>Url</th>
                     <th>Preview</th>
                     <th>*</th>
+                    <th>*</th>
                 </tr>
             </thead>
 
@@ -29,10 +30,12 @@
                         <td>{{ $photo->id }}</td>
                         <td>{{ $photo->title }}</td>
                         <td>{{ $photo->url }}</td>
-                        {{-- Al momento ho modificato le dimensioni delle foto con l'approccio inline (a differenza del tutorial --}}
                         <td><img class="photo-preview" src="{{ $photo->url }}" style="width:100px; height:100px;"></td>
                         <td>
                             <a class="btn btn-info" href="{{ route('photos.show', ['photo' => $photo->id]) }}">DETAILS</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-success" href="{{ route('photos.edit', ['photo' => $photo->id]) }}">EDIT</a>
                         </td>
                     </tr>
                 @endforeach
@@ -41,7 +44,3 @@
         </table>
     @endif
 @endsection
-
-{{-- @section('second-area')
-my second area
-@endsection --}}

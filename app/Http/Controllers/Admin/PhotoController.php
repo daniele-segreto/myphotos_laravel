@@ -68,7 +68,11 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        //
+        $data = [
+            "photo" => $photo
+        ];
+
+        return view('photos.edit', $data);
     }
 
     /**
@@ -76,7 +80,17 @@ class PhotoController extends Controller
      */
     public function update(Request $request, Photo $photo)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:100',
+            'url' => 'required|max:100'
+        ]);
+
+        $photo->title = $request->input('title');
+        $photo->url = $request->input('url');
+
+        $photo->save();
+
+        return redirect()->route('photos.index')->with('success', 'Photo saved successfully');
     }
 
     /**
