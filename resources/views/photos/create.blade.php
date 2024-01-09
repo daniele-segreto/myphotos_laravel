@@ -1,5 +1,5 @@
-{{-- @extends('layouts.app') su GitHub era così --}}
-@extends('layouts.layout-bootstrap')
+@extends('layouts.app')
+{{-- @extends('layouts.layout-bootstrap') ==> sostituito con quello sopra --}}
 
 @section('content')
     <form method="POST" action="{{ route('photos.store') }}">

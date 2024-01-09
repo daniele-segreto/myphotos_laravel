@@ -131,3 +131,7 @@ Route::post('photos', [PhotoController::class, 'store']);
 # altro modo per creare queste rotte
 // Route::resource('photos', 'Admin\PhotoController'); // non funziona (old)
 Route::resource('photos', PhotoController::class); // funziona (new)
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -1,4 +1,5 @@
-@extends('layouts.layout-bootstrap')
+@extends('layouts.app')
+{{-- @extends('layouts.layout-bootstrap') ==> sostituito con quello sopra --}}
 
 @section('content')
 

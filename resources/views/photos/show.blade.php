@@ -1,4 +1,5 @@
-@extends('layouts.layout-bootstrap') {{-- Qusta parte era diversa da GitHub --}}
+@extends('layouts.app')
+{{-- @extends('layouts.layout-bootstrap') ==> sostituito con quello sopra --}}
 
 @section('content')
     <div class="form-group">
