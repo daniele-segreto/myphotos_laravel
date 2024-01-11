@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\PhotoController;
-use App\Http\Controllers\MyFirstController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MyFirstController;
+use App\Http\Controllers\Admin\PhotoController;
 
 
 /*
@@ -130,8 +131,24 @@ Route::post('photos', [PhotoController::class, 'store']);
 
 # altro modo per creare queste rotte
 // Route::resource('photos', 'Admin\PhotoController'); // non funziona (old)
-Route::resource('photos', PhotoController::class); // funziona (new)
+// Route::resource('photos', PhotoController::class); // funziona (new) // COMMENTIAMOLO
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+#COMMENTARE QUESTA PARTE --------------------------------------------------------------
+// togliere ->namespace('Admin') // altrimenti non funziona
+// Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function () {
+
+// Route::resource('photos', 'PhotoController'); // non funziona (old)
+// Route::resource('photos', PhotoController::class); // funziona (new)
+
+//});
+
+#FUNZIONA SE TOGLIAMO ->namespace('Admin')
+Route::prefix('admin')->middleware('auth')->group(function () {
+
+    Route::resource('photos', PhotoController::class); // funziona (new)
+
+});
