@@ -22,8 +22,12 @@ use App\Http\Controllers\Admin\PhotoController;
 #1 INTRODUZIONE ALLE ROTTE
 
 // Rotta welcome preimpostata da LaraveL
+// Route::get('/', function () {
+//     return view('welcome'); // restituisce una vista (che possiamo trovare in resources > views > welcome.blade.php)
+// });
+// Cambio la rotta 'welcome' preimpostata da Laravel in 'index'
 Route::get('/', function () {
-    return view('welcome'); // restituisce una vista (che possiamo trovare in resources > views > welcome.blade.php)
+    return view('index'); // restituisce una vista (che possiamo trovare in resources > views > index.blade.php)
 });
 
 // Rotta realizzata manualmente
